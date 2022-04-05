@@ -7,7 +7,11 @@ from .commons import VERSION
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
     # Auth
-    "DEFAULT_AUTHENTICATION_CLASSES": ["durin.auth.CachedTokenAuthentication"],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "oauth2_provider.contrib.rest_framework.OAuth2Authentication",  # django-oauth-toolkit >= 1.0.0
+        "rest_framework_social_oauth2.authentication.SocialAuthentication",
+        "durin.auth.CachedTokenAuthentication",
+    ],
     # Pagination
     "DEFAULT_PAGINATION_CLASS": "certego_saas.ext.pagination.CustomPageNumberPagination",
     "PAGE_SIZE": 10,
@@ -22,6 +26,17 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
+
+# Google configuration
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = (
+    "387157645539-fplh8sracssg61f6bfqo6bf96cbp3mlh.apps.googleusercontent.com"
+)
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "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"
+# Define SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE to get extra permissions from Google.
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/userinfo.profile",
+]
 
 # Django-Rest-Durin
 REST_DURIN = {

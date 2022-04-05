@@ -13,6 +13,7 @@ def render_reactapp(request):
 urlpatterns = [
     path("admin/", admin.site.urls, name="admin"),
     path("api/", include("api_app.urls")),
+    re_path(r"^auth/", include("rest_framework_social_oauth2.urls")),
     re_path(r"^(?!api)$", render_reactapp),
     re_path(r"^(?!api)(?:.*)/?$", render_reactapp),
 ]

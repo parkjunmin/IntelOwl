@@ -8,7 +8,7 @@ MIDDLEWARE = [
     "certego_saas.ext.middlewares.StatsMiddleware",  # custom
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
+    # "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -26,6 +26,9 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                # OAuth
+                "social_django.context_processors.backends",
+                "social_django.context_processors.login_redirect",
                 "certego_saas.templates.context_processors.host",  # custom
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
@@ -44,6 +47,10 @@ WSGI_APPLICATION = "intel_owl.wsgi.application"
 AUTH_USER_MODEL = "certego_saas.User"  # custom user model
 
 AUTHENTICATION_BACKENDS = [
+    # Google OAuth2
+    "social_core.backends.google.GoogleOAuth2",
+    # django-rest-framework-social-oauth2
+    "rest_framework_social_oauth2.backends.DjangoOAuth2",
     "django.contrib.auth.backends.ModelBackend",
 ]
 

@@ -10,6 +10,7 @@ django-celery-results==2.2.0
 # django rest framework libs
 djangorestframework==3.13.1
 djangorestframework-filters==1.0.0.dev2
+django-rest-framework-social-oauth2==1.1.0
 drf-spectacular==0.22.0
 
 uWSGI==2.0.20
